@@ -23,8 +23,6 @@ var request = function(paras) {
 	return decodeURIComponent(parameter);
 }
 var url = request("url");
-
-  $("button").click(function(){
     $.ajax({  
         url:"http://tcyhw.cn/api/api.php?url="+url,  
         dataType:'jsonp',  
@@ -38,7 +36,6 @@ var url = request("url");
         },  
         timeout:5000  
     });  
-  });
 });
 </script>
 <script type="text/javascript">
