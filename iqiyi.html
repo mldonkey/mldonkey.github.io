@@ -1,38 +1,34 @@
 <html>
 <head></head>
 <body marginwidth="0" marginheight="0">
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script>
 $(function(){
-var request = function(paras) {
-	var i = 0;
-	var j = 0;
-	var paraObj = {};
-	var url = window.location.hash;
-	if (url.indexOf("#")> -1) {
-		url = url.split("#", 2)[1];
+	var request = function(paras) {
+		var i = 0;
+		var j = 0;
+		var paraObj = {};
+		var url = window.location.hash;
+		if (url.indexOf("#")> -1) {
+			url = url.split("#", 2)[1];
+		}
+		var paraString = url.split("&");
+		for (i=0; j=paraString[i]; i++) {
+			paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);
+		}
+		var parameter = paraObj[paras.toLowerCase()];
+		if(typeof(parameter) == "undefined") {
+			return "";
+		}
+		return decodeURIComponent(parameter);
 	}
-	var paraString = url.split("&");
-	for (i=0; j=paraString[i]; i++) {
-		paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);
-	}
-	var parameter = paraObj[paras.toLowerCase()];
-	if(typeof(parameter) == "undefined") {
-		return "";
-	}
-	return decodeURIComponent(parameter);
-}
-var url = request("url");
+	var url = request("url");
     $.ajax({  
         url:"http://tcyhw.cn/api/api.php?url="+url,  
-        dataType:'jsonp',  
-        data:'',  
+        dataType:'jsonp',
         jsonp:'callback',  
         success:function(result) {  
-            for(var i in result) {  
-                alert(i+":"+result[i]);//循环输出a:1,b:2,etc.  
-            }  
-			document.write('<embed type="application/x-shockwave-flash" src="http://dispatcher.video.qiyi.com/disp/shareplayer.swf" width="100%" height="100%" allowfullscreen="true" flashvars="vid='+result['vid']+'&tvId='+result['tvid']+'&coop=coop_61gequ&autoplay=1&bd=1&cid=qc_100001_300089&isPlayNext=0&showRecommend=0&showWatermark=0&showPVRecommend=0&showLogo=0&preloader=http://www.iqiyi.com/common/flashplayer/20150608/vip_loading.swf">');
+			$("body").append('<embed type="application/x-shockwave-flash" src="http://dispatcher.video.qiyi.com/disp/shareplayer.swf" width="100%" height="100%" allowfullscreen="true" flashvars="vid='+result['vid']+'&tvId='+result['tvid']+'&coop=coop_61gequ&autoplay=1&bd=1&cid=qc_100001_300089&isPlayNext=0&showRecommend=0&showWatermark=0&showPVRecommend=0&showLogo=0&preloader=http://www.iqiyi.com/common/flashplayer/20150608/vip_loading.swf">');
         },  
         timeout:5000  
     });  
