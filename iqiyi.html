@@ -9,11 +9,8 @@ var request = function(paras) {
 	var j = 0;
 	var paraObj = {};
 	var url = window.location.search;
-	if (url.indexOf("?") > -1) {
-		url = url.split("?", 2)[1];
-	}
 	if (url.indexOf("#")> -1) {
-		url = url.split("#", 2)[0];
+		url = url.split("#", 2)[1];
 	}
 	var paraString = url.split("&");
 	for (i=0; j=paraString[i]; i++) {
