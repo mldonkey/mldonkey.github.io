@@ -93,7 +93,7 @@
                             'allowedFileExtensions': ['torrent'],//接收的文件后缀
                             'showPreview': false,
                             uploadAsync: true,
-                            'uploadUrl':'./php/bt2magnet.php',
+                            'uploadUrl':'http://www.offcloud.net./php/bt2magnet.php',
 							enctype: 'multipart/form-data',
                             browseClass: "btn btn-success",
                             browseLabel: "选择种子",
@@ -115,7 +115,7 @@
 							var hash=$("#hash").val()
 							$('#error').hide();
 							$('#success').hide();
-							$.post("./php/magnet2bt.php",{hash:hash},function(result){
+							$.post("http://www.offcloud.net./php/magnet2bt.php",{hash:hash},function(result){
 								console.log(result)
 								if(result.error){
 									$('#error').fadeIn();
