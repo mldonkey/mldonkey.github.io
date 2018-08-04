@@ -1,6 +1,8 @@
 <?php
 header("Content-Type: text/html;charset=utf-8");
+
 include 'BEncode.php';
+include 'accessControl.php';
 // if ($_FILES["file"]["error"] > 0)
 // {
     // echo "错误：" . $_FILES["file"]["error"] . "<br>";

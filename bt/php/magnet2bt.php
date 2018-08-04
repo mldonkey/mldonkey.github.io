@@ -1,4 +1,6 @@
 <?php
+
+include 'accessControl.php';
 function udpGet($sendMsg = '', $ip = '127.0.0.1', $port = '5000'){
 	$handle = stream_socket_client("udp://{$ip}:{$port}", $errno, $errstr);
 	if( !$handle ){
